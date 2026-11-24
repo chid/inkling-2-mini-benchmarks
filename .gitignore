@@ -1,0 +1,21 @@
+# Operating System
+.DS_Store
+*.swp
+*~
+
+# Models and Quantized Weights
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.onnx
+
+# Python & Caching
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Execution Logs & Traces
+*.log
+*.trace
+/tmp/

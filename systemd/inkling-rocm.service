@@ -1,0 +1,19 @@
+[Unit]
+Description=Inkling 2 Mini ROCm Inference Server
+After=network.target
+
+[Service]
+Type=simple
+Environment=LD_LIBRARY_PATH=/opt/rocm/core-10.1/lib
+Environment=PORT=8093
+ExecStart=%h/bin/llama-b12626-rocm/llama-server \
+  -m %h/models/inkling-2-mini-uncensored/Inkling-2-Mini-Uncensored-AD-IQ3_S.gguf \
+  --mmproj %h/models/inkling-2-mini-uncensored/mmproj-Inkling-2-Mini-Uncensored-F16.gguf \
+  --device ROCm0 --mmproj-device ROCm0 \
+  --host 0.0.0.0 --port 8093 \
+  -ngl 99 -c 8192 -t 8 -fa on
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
